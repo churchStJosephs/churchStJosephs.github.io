@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./bootstrap.min.css" />
     <link rel="stylesheet" href="./material-icons.min.css" />
@@ -19,9 +20,9 @@
     <title>St Joseph's Catholic Church</title>
   </head>
 
-  
 
-  
+
+
   <body onload="getContentFromJsonPlaceholder(`http://46.101.233.134/app1/api/bookings/entireList`)"></body>
 
   <div class="content">
@@ -104,27 +105,27 @@
 
               result.forEach((item) => {
                 // alert(JSON.stringify(item));
-                  // let assignmentId = splitResults[0];
-                  // let firstName = splitResults[1];
-                  // let lastName = splitResults[2];
-                  // let regNumber = splitResults[3];
-                  // let startDate = splitResults[4];
-                  // let endDate = splitResults[5];
-                  // let odometerStart = splitResults[6];
-                  // let odometerEnd = splitResults[7];
-                  // let startingPoint = splitResults[8];
-                  // let endPoint = splitResults[9];
+                // let assignmentId = splitResults[0];
+                // let firstName = splitResults[1];
+                // let lastName = splitResults[2];
+                // let regNumber = splitResults[3];
+                // let startDate = splitResults[4];
+                // let endDate = splitResults[5];
+                // let odometerStart = splitResults[6];
+                // let odometerEnd = splitResults[7];
+                // let startingPoint = splitResults[8];
+                // let endPoint = splitResults[9];
 
-                  
+
               })
-              
+
               // console.log('entireRecord');
               // console.log(entireRecord);
 
               // responseYote = entireRecord
 
 
-              
+
 
               createTable(result);
               return;
