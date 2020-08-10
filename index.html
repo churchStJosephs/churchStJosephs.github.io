@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./material-icons.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./x-dropdown.css" />
+
+    <script type="text/javascript" src="./sweetalert.min.js"></script>
+    <script type="text/javascript" src="./axios.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+    <title>St Joseph's Catholic Church</title>
+  </head>
+
+  
+
+  
+  <body onload="getContentFromJsonPlaceholder(`http://46.101.233.134/app1/api/bookings/entireList`)"></body>
+
+  <div class="content">
+    <header class="app-header">
+      <div class="container">
+        <!-- <img class="logo" src="./twiga-logo.png" alt="" /> -->
+
+      </div>
+    </header>
+
+
+    <div id="parent">
+      <h2 class="text-center mt-2 mb-2"><u>St Joseph's Catholic Church Jericho</u></h2>
+      <br>
+      <h3 class="text-center mt-2 mb-2">Mass Attendance Reports</h3>
+
+      <div class="x-dropdown dropdown">
+        <div class="border rounded-0 text-left x-drop-btn" data-toggle="dropdown" aria-expanded="false">
+          <span style="font-size: 13px;">Select span of record retrieval*</span><i
+            class="material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="dropdown-menu" role="menu">
+          <div class="container">
+            <div class="table-responsive text-monospace text-nowrap text-left text-white-50"
+              style="background-color: rgba(248,249,250,0);">
+              <table class="table table-sm" style="margin-bottom: 0%">
+                <tbody style="color: rgba(33,37,41,0);">
+                  <tr></tr>
+                  <tr>
+                    <td class="text-left" style="font-size: 12px;color: #212529; border:none">
+                      From:<input class="bg-light border rounded border-secondary shadow-sm" type="date"
+                        id="startingPoint"
+                        style="padding: 1px 1px;width: 70px;background-color: rgba(255,255,255,0);color: #000000;" />
+                    </td>
+                    <td class="text-left" style="font-size: 12px;color: #212529;  border:none">
+                      To:<input class="bg-light border rounded border-secondary shadow-sm" type="date" id="endPoint"
+                        style="padding: 1px 1px;width: 70px;color: #000000;background-color: rgba(255,255,255,0);" />
+                    </td>
+                    <td class="d-flex" style="color: #212529; border:none">
+                      <button id="triggerFilter" class="btn btn-success btn-sm text-monospace text-left" type="button"
+                        style="font-size: 11px;color: #ffffff;" onclick="filterResults()">
+                        Retrieve
+                      </button>
+                    </td>
+                  </tr>
+                  <tr style="color: #212529;"></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modalSection"></div>
+      <script src="./jquery.min.js"></script>
+      <script type="text/javascript" src="./html2csv.js"></script>
+      <script type="text/javascript" src="./downloadTable.js"></script>
+      <script src="./bootstrap.min.js"></script>
+
+
+
+      <table id="projectSpreadsheet" class="table table-striped mt-2">
+
+
+        <script>
+          var responseYote;
+
+
+          async function getContentFromJsonPlaceholder(url) {
+
+            try {
+              let resultJson = await fetch(url);
+
+              result = await resultJson.json();
+
+              console.log('result');
+              console.log(result);
+
+              responseYote = result;
+
+              result.forEach((item) => {
+                // alert(JSON.stringify(item));
+                  // let assignmentId = splitResults[0];
+                  // let firstName = splitResults[1];
+                  // let lastName = splitResults[2];
+                  // let regNumber = splitResults[3];
+                  // let startDate = splitResults[4];
+                  // let endDate = splitResults[5];
+                  // let odometerStart = splitResults[6];
+                  // let odometerEnd = splitResults[7];
+                  // let startingPoint = splitResults[8];
+                  // let endPoint = splitResults[9];
+
+                  
+              })
+              
+              // console.log('entireRecord');
+              // console.log(entireRecord);
+
+              // responseYote = entireRecord
+
+
+              
+
+              createTable(result);
+              return;
+            } catch (err) {
+              console.log(err);
+            }
+          };
+
+
+
+          function createTable(result) {
+
+            let markup = `
+              <thead>
+                <tr>                  
+                  <th scope="col" style="font-size: 13px">Id.</th>
+                  <th scope="col" style="font-size: 13px">Name</th>
+                  <th scope="col" style="font-size: 13px">ID No</th>                        
+                  <th scope="col" style="font-size: 13px">Phone</th>                  
+                  <th scope="col" style="font-size: 13px">Group</th>
+                  <th scope="col" style="font-size: 13px">Date</th>                  
+                  <th scope="col" style="font-size: 13px">Mass Time</th>                  
+                  <th scope="col" style="font-size: 13px">Venue</th>   
+                </tr>
+              </thead>
+              `;
+
+            for (let i = 0; i < result.length; i++) {
+              var iteration = i;
+              markup +=
+                `<tbody id="tbodyid">
+                      <tr>
+                        <td style="font-size: 11px">${i+1}</td>                        
+                        <td style="font-size: 11px">${result[i].firstName} ${result[i].lastName}</td>
+                        <td style="font-size: 11px">${30258124}</td>                        
+                        <td style="font-size: 11px">${result[i].phoneNumber}</td>
+                        <td style="font-size: 11px">${result[i].jumuiaGroup}</td>                        
+                        <td style="font-size: 11px">${new Date(result[i].serviceDate).toLocaleDateString('en-US')}</td> 
+                        <td style="font-size: 11px">${result[i].startTime} to ${result[i].endTIme}</td>
+                        <td style="font-size: 11px">${result[i].venue}</td>                                                
+                      </tr>                                        
+                  </tbody>`;
+
+              // <td style="font-size: 11px">${getStatus(result[i]._links.assignments.href).then(user => user)}</td>
+            }
+
+            document.querySelector("#projectSpreadsheet").innerHTML = markup;
+          }
+
+
+
+          function filterResults() {
+            let startPoint = document.querySelector('#startingPoint').value;
+            let endPointBefore = document.querySelector('#endPoint').value;
+            let endPoint = `${endPointBefore}T23:59:59`;
+
+            console.log(startPoint);
+            console.log(endPoint);
+
+            let newData = responseYote.filter(record => {
+              return new Date(record.serviceDate) >= new Date(startPoint) && new Date(record.serviceDate) <=
+                new Date(endPoint)
+            });
+
+            console.log(newData);
+
+            createTable(newData);
+          }
+        </script>
+
+      </table>
+
+    </div>
+  </div>
+
+  <div class=" ml-4">
+    <!-- panel-footer -->
+
+    <div class="text-center">
+      <!-- <a class="text-center btn btn-secondary btn-sm mr-4 mb-2"
+          onclick="exportTableToExcel('tableData', `accidentsReport_${new Date().toLocaleString()}`)"> -->
+
+      <input value="Send to Email" type="button"
+        onclick="$('#projectSpreadsheet').table2CSV({header:['id', 'drivers name', 'reg No', 'Start Date', 'End Date', 'Odometer Start', 'Odometer End', 'Starting Point', 'End Point' ]}, `assignmentsReport_${new Date().toLocaleString()}`)">
+
+      <i class="fas fa-arrow-down " style="color:white"></i> <span style="color:white"></span>
+      </a>
+    </div>
+
+  </div>
+  </div>
+
+
+  <footer class="app-footer mt-0">
+    <div class="text-center">
+
+      <a href="#" id="xx" class="-center btn btn-primary btn-twitter btn-sm">Export Table data into Excel</a>
+      <!-- <a class="text-center btn btn-primary btn-twitter btn-sm" href="#">
+
+        Download <i class="fas fa-arrow-down"></i> -->
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  </body>
+
+
+</html>

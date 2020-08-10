@@ -1,0 +1,52 @@
+/* KEYFRAMES */
+@keyframes pulse {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: .25;
+		transform: scale(.75);
+	}
+}
+
+/* PULSE BUBBLES */
+
+.pulse-container {
+	/* width: 120px; */
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.pulse-bubble {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #25865d;
+}
+
+.pulse-bubble-1 {
+	animation: pulse .4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+	animation: pulse .4s ease .2s infinite alternate;
+}
+.pulse-bubble-3 {
+	animation: pulse .4s ease .4s infinite alternate;
+}
+.pulse-bubble-4 {
+	animation: pulse .4s ease .6s infinite alternate;
+}
+
+.w1 {
+	transform: rotate3D(1, 1, 1, 90deg);
+}
+
+.w2 {
+	transform: rotate3D(1, 2, .5, 90deg);
+}
+
+.w3 {
+	transform: rotate3D(.5, 1, 2, 90deg);
+}

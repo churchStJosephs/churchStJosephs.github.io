@@ -1,0 +1,64 @@
+:root {
+	--primary-color: #000a56;
+	--secondary-color: #4b8b2a;
+}
+
+html,
+body {
+	
+	height: 100%;
+}
+
+* {
+	/* box-sizing: border-box; */
+	margin: 0;
+	padding: 0;
+}
+
+body {	
+	display: flex;
+	flex-direction: column;
+}
+
+/* For sticky footer - grow to fill the space */
+.content {
+	flex: 1 0 auto;
+}
+
+
+.app-footer {
+	flex-shrink: 0;
+	background: #f4f4f4;
+	color: #444;
+	padding: 10px;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.app-footer ul {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.app-footer ul li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.app-footer ul li i {
+	font-size: 22px;
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+	.grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.grid .item img {
+		width: 60px;
+	}
+}
